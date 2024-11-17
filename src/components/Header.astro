@@ -1,0 +1,65 @@
+---
+import { Icon } from "astro-icon/components";
+
+import NavigationMenuFullViewport from "@components/NavigationMenuFullViewport.astro";
+
+interface Props {
+  navItems: { href: string; label: string; ariaLabel: string }[];
+}
+
+const { navItems } = Astro.props as Props;
+---
+
+<header class="w-full flex items-center justify-center">
+  <nav class="flex w-full items-center justify-between p-4 md:px-32">
+    <div class="flex-grow md:relative md:min-h-8">
+      <a
+        href="/"
+        class="md:absolute block max-w-min md:top-0 md:left-0"
+        aria-label="Home"
+      >
+        <Icon name="logo-1" class="m-0 h-12 md:h-20 w-auto" />
+      </a>
+    </div>
+    <div>
+      <ul class="hidden md:block">
+        {
+          navItems.map((navItem) => (
+            <li class="inline-block mx-4">
+              <a
+                href={navItem.href}
+                class="no-underline hover:prose-green"
+                aria-label={navItem.ariaLabel}
+              >
+                {navItem.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <!-- Hamburger Menu Button -->
+      <button
+        id="hamburger-menu-btn"
+        class="md:hidden hover:bg-slate-800 p-2 rounded-lg"
+        aria-label="Open Menu"
+      >
+        <Icon name="menu-2" class="m-0 h-8 w-auto" />
+      </button>
+
+      <NavigationMenuFullViewport navItems={navItems} />
+    </div>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const hamburgerMenuBtnEl = document.querySelector("#hamburger-menu-btn");
+    const menuFullViewportEl = document.querySelector("#full-viewport-menu");
+
+    hamburgerMenuBtnEl?.addEventListener("click", () => {
+      menuFullViewportEl?.classList.remove("menu-close");
+      menuFullViewportEl?.classList.add("menu-open");
+    });
+  });
+</script>

@@ -1,0 +1,55 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  navItems: { href: string; label: string; ariaLabel: string }[];
+}
+
+const { navItems } = Astro.props as Props;
+---
+
+<footer class="flex flex-col w-full py-16">
+  <div class="w-full flex justify-center">
+    <a href="/" aria-label="Home">
+      <Icon name="logo-0" class="m-0 h-12 w-auto" />
+    </a>
+  </div>
+  <hr class="my-4" />
+  <div class="flex flex-wrap justify-center gap-4">
+    {
+      navItems.map((navItem) => (
+        <a
+          href={navItem.href}
+          class="no-underline hover:prose-green"
+          aria-label={navItem.ariaLabel}
+        >
+          {navItem.label}
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="flex flex-wrap justify-center gap-4 mt-4">
+    <a
+      href="https://www.facebook.com/"
+      class="no-underline hover:prose-green"
+      aria-label="Facebook"
+    >
+      <Icon name="brand-facebook" class="m-0 h-8 w-auto" />
+    </a>
+    <a
+      href="https://www.instagram.com/"
+      class="no-underline hover:prose-green"
+      aria-label="Instagram"
+    >
+      <Icon name="brand-instagram" class="m-0 h-8 w-auto" />
+    </a>
+    <a
+      href="https://www.twitter.com/"
+      class="no-underline hover:prose-green"
+      aria-label="Twitter"
+    >
+      <Icon name="brand-whatsapp" class="m-0 h-8 w-auto" />
+    </a>
+  </div>
+</footer>
