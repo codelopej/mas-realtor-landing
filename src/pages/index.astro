@@ -1,8 +1,52 @@
 ---
-import { Welcome } from 'astro:components';
-import Layout from '../layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
+import HeroBanner from "@components/HeroBanner.astro";
+import Services from "@components/Services.astro";
+import NewBeginnings from "@components/NewBeginnings.astro";
 ---
 
 <Layout>
-	<Welcome title="Welcome to Astro" />
+  <main class="flex flex-col w-full gap-12 px-4 md:px-32 overflow-hidden">
+    <HeroBanner />
+    <Services />
+    <NewBeginnings />
+  </main>
 </Layout>
+
+<style is:global>
+  div#full-viewport-menu.menu-open {
+    animation: full-viewport-menu-fade-in 0.5s ease-in-out forwards;
+  }
+
+  div#full-viewport-menu.menu-close {
+    animation: full-viewport-menu-fade-out 0.5s ease-in-out forwards;
+  }
+
+  @keyframes full-viewport-menu-fade-in {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+      transform-origin: top right;
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      transform-origin: top right;
+    }
+  }
+
+  @keyframes full-viewport-menu-fade-out {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+      transform-origin: top right;
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(0);
+      transform-origin: top right;
+    }
+  }
+</style>
