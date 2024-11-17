@@ -1,0 +1,25 @@
+---
+import { clsx } from "clsx";
+
+interface Props extends astroHTML.JSX.ButtonHTMLAttributes {
+  variant?: "base" | "accent" | "danger";
+}
+
+const { variant, ...attributes } = Astro.props as Props;
+
+attributes.class = clsx(
+  "font-semibold text-lg tracking-wide leading-8 py-2 px-4 border rounded outline-none focus:outline-none inline-flex items-center justify-center text-white",
+  {
+    "bg-transparent border-white hover:bg-slate-700 hover:border-slate-700":
+      !variant || variant === "base",
+    "bg-green-700 border-green-700 hover:bg-green-900 hover:border-green-900":
+      variant === "accent",
+    // "bg-red-500 hover:bg-red-700 text-slate-200 ": variant === "danger",
+  },
+  attributes.class,
+);
+---
+
+<button {...attributes}>
+  <slot />
+</button>

@@ -1,0 +1,71 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Button from "@components/ui/Button.astro";
+
+interface Props extends astroHTML.JSX.HTMLAttributes {
+  navItems: Array<{
+    href: string;
+    label?: string;
+    icon?: string;
+    iconOpts?: { position?: "pre" | "post"; class?: string };
+  }>;
+}
+
+const attributes = Astro.props as Props;
+const baseClass =
+  "fixed flex flex-col inset-0 z-50 overflow-hidden bg-slate-900 opacity-0 scale-0";
+
+attributes.class = attributes.class
+  ? `${baseClass} ${attributes.class}`
+  : baseClass;
+---
+
+<div id="full-viewport-menu" {...attributes}>
+  <nav class="flex-grow">
+    <ul class="flex flex-col list-none px-2 py-0 gap-y-1">
+      {
+        attributes.navItems.map((navItem) => (
+          <li class="m-0 p-0 w-full">
+            <a
+              href={navItem.href}
+              class="no-underline text-xl h-full w-full px-6 py-4 flex items-center justify-between gap-4 rounded-lg bg-slate-700 hover:bg-slate-800"
+            >
+              {navItem.icon && navItem.iconOpts?.position === "pre" && (
+                <Icon name={navItem.icon} class={navItem.iconOpts.class} />
+              )}
+              {navItem.label}
+              {navItem.icon && navItem.iconOpts?.position === "post" && (
+                <Icon name={navItem.icon} class={navItem.iconOpts.class} />
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div class="w-full h-64 flex justify-center">
+    <Button
+      id="close-full-viewport-menu-btn"
+      class="m-auto gap-2"
+      aria-label="Close Menu"
+    >
+      <span class="">Close Menu</span>
+      <Icon name="arrow-left-from-arc" class="m-0 h-6 w-auto" />
+    </Button>
+  </div>
+</div>
+
+<script>
+  const closeFullViewportMenuBtn = document.querySelector(
+    "#close-full-viewport-menu-btn",
+  );
+
+  closeFullViewportMenuBtn?.addEventListener("click", () => {
+    const menuFullViewportEl = document.querySelector("#full-viewport-menu");
+
+    menuFullViewportEl?.classList.remove("menu-open");
+    menuFullViewportEl?.classList.add("menu-close");
+  });
+</script>

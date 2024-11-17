@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+
+import newBeginningsImage02 from "@assets/images/464763325_18373443394111368_1813784926322474774_n.jpg";
+import newBeginningsImage03 from "@assets/images/467118237_18375720739111368_1160034954214322851_n.jpg";
+import newBeginningsImage01 from "@assets/images/467343784_18375720382111368_2295532871189816344_n.jpg";
+import newBeginningsImage04 from "@assets/images/461323363_2098336667234172_4743980091985183910_n.jpg";
+---
+
+<section
+  class="opacity-0 translate-y-20 transition-all duration-500 ease-out"
+  data-observe-up-in
+>
+  <div>
+    <h2>Celebrating New Beginnings</h2>
+    <p class="mt-4">
+      Discover the joy of our clients as they take the keys to their dream
+      homes. Each smile tells a story of trust, dedication, and success - a
+      moment we're proud to be part of.
+    </p>
+  </div>
+
+  <div
+    class="sm:grid sm:grid-cols-6 sm:grid-flow-dense sm:gap-4 md:grid-cols-3"
+  >
+    <Image
+      src={newBeginningsImage01}
+      alt="New Beginnings 01"
+      class="rounded-xl sm:m-0 sm:row-start-1 sm:col-start-1 sm:col-span-3 md:col-span-1"
+    />
+    <Image
+      src={newBeginningsImage02}
+      alt="New Beginnings 02"
+      class="rounded-xl sm:m-0 sm:col-start-1 sm:row-start-2 sm:col-span-4 md:col-span-3"
+    />
+    <Image
+      src={newBeginningsImage03}
+      alt="New Beginnings 03"
+      class="rounded-xl sm:m-0 sm:row-start-1 sm:col-start-4 sm:col-span-3 md:row-start-1 md:col-start-2 md:col-span-1"
+    />
+    <Image
+      src={newBeginningsImage04}
+      alt="New Beginnings 04"
+      class="rounded-xl sm:m-0 sm:row-start-2 sm:col-start-5 sm:col-span-2 md:row-start-1 md:col-start-3 md:col-span-1"
+    />
+  </div>
+</section>
