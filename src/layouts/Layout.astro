@@ -4,8 +4,13 @@ import Header from "@components/Header.astro";
 
 const navItems = [
 	{ href: "/about", label: "About", ariaLabel: "About Apple Homes Corp." },
-	{ href: "/services", label: "Services", ariaLabel: "Services" },
 	{ href: "/contact", label: "Contact", ariaLabel: "Contact Us" },
+];
+
+const navItemsExtended = [
+	...navItems,
+	{ href: "/privacy", label: "Privacy", ariaLabel: "Privacy Policy" },
+	{ href: "/terms", label: "Terms", ariaLabel: "Terms of Service" },
 ];
 ---
 
@@ -27,7 +32,7 @@ const navItems = [
 	>
 		<Header navItems={navItems} />
 		<slot />
-		<Footer navItems={navItems} />
+		<Footer navItems={navItemsExtended} />
 	</body>
 </html>
 
